@@ -21,8 +21,8 @@ if(place_meeting(x,y+1,oWall))
 		sprite_index = sPlayer;
 	}
 } else if(!place_meeting(x,y+1,oWall)) {
-	// sprite_index = sPlayerJ;
-	if(sign(vsp) < 0) sprite_index = sPlayerJ;	else sprite_index = sPlayer;
+	sprite_index = sPlayerJ;
+	// if(sign(vsp) < 0) sprite_index = sPlayerJ;	else sprite_index = sPlayer;
 }
 
 // Horizontal Collision
