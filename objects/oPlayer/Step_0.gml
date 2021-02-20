@@ -5,46 +5,49 @@ key_jump = keyboard_check(vk_space);
 
 // Calculate Horizontal Movement
 var move = key_right - key_left;
+var on_land = true
 
 hsp = move * wlksp;
 
 // Calculate Vertical Movement
-vsp = vsp + grv;
-if(place_meeting(x,y+1,oWall))
+vsp += grv;
+if(place_meeting(x,y+1,oLand))
 {
 	if(key_jump) {
 		vsp = -6;
+		on_land = false;
 	}
-	if (hsp != 0) {
+	if(hsp != 0 and vsp == grv) {
 		sprite_index = sPlayerR;
 	} else {
 		sprite_index = sPlayer;
 	}
-} else if(!place_meeting(x,y+1,oWall)) {
-	sprite_index = sPlayerJ;
-	// if(sign(vsp) < 0) sprite_index = sPlayerJ;	else sprite_index = sPlayer;
 }
 
 // Horizontal Collision
-if(place_meeting(x+hsp,y,oWall))
+if(place_meeting(x+hsp,y,oLand))
 {
-	while(!place_meeting(x+sign(hsp),y,oWall))
+	while(!place_meeting(x+sign(hsp),y,oLand))
 	{
-		x = x+sign(hsp);
+		x += sign(hsp);
 	}
 	hsp = 0;
-}
-x = x + hsp;
+} 
+x += hsp;
 
 // Vertival Collision
-if(place_meeting(x,y+vsp,oWall))
+if(place_meeting(x,y+vsp,oLand))
 {
-	while(!place_meeting(x,y+vsp,oWall))
+	while(!place_meeting(x,y+sign(vsp),oLand))
 	{
-		y = y+sign(vsp);
+		y += sign(vsp);
 	}
 	vsp = 0;
+	on_land = true;
 } 
-y = y + vsp;
+
+if (!on_land) sprite_index = sPlayerJ;
+
+y += vsp;
 
 if(hsp != 0) image_xscale = sign(hsp);

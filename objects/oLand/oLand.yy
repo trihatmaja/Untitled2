@@ -3,7 +3,7 @@
     "name": "sWall",
     "path": "sprites/sWall/sWall.yy",
   },
-  "solid": false,
+  "solid": true,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
@@ -28,7 +28,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "oWall",
+  "name": "oLand",
   "tags": [],
   "resourceType": "GMObject",
 }
